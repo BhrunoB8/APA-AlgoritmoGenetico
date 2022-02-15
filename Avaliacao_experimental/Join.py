@@ -571,12 +571,12 @@ y3 = tmp
 start_time = tm.time()
 algoritmoGeneticoPlotTamPop(berlin52, 800, 55, 0.001, 200)
 x4 = 800
-y4 = (tm.time() - start_time)
+y4 = tmp
 
 start_time = tm.time()
 algoritmoGeneticoPlotTamPop(berlin52, 1000, 55, 0.001, 200)
 x5 = 1000
-y5 = (tm.time() - start_time)
+y5 = tmp
 
 # Tamanho Elite
 
@@ -585,53 +585,53 @@ y5 = (tm.time() - start_time)
 start_time = tm.time()
 algoritmoGeneticoPlotGeracoes(berlin52, 200, 55, 0.001, 200)
 x6=200
-y6= (tm.time()-start_time)
+y6= tmp
 
 start_time = tm.time()
 algoritmoGeneticoPlotGeracoes(berlin52, 200, 55, 0.001, 400)
 x7=400
-y7= (tm.time()-start_time)
+y7= tmp
 
 start_time = tm.time()
 algoritmoGeneticoPlotGeracoes(berlin52, 200, 55, 0.001, 600)
 x8=600
-y8= (tm.time()-start_time)
+y8= tmp
 
 start_time = tm.time()
 algoritmoGeneticoPlotGeracoes(berlin52, 200, 55, 0.001, 800)
 x9=800
-y9= (tm.time()-start_time)
+y9= tmp
 
 start_time = tm.time()
 algoritmoGeneticoPlotGeracoes(berlin52, 200, 55, 0.001, 1000)
 x10=1000
-y10= (tm.time()-start_time)
+y10= tmp
 
 # Tamanho Elite
 start_time = tm.time()
 algoritmoGeneticoPlotTamElite(berlin52, 200, 10, 0.001, 200)
 x11 = 10
-y11 = (tm.time() - start_time)
+y11 = tmp
 
 start_time = tm.time()
 algoritmoGeneticoPlotTamElite(berlin52, 200, 30, 0.001, 200)
 x12 = 30
-y12 = (tm.time() - start_time)
+y12 = tmp
 
 start_time = tm.time()
 algoritmoGeneticoPlotTamElite(berlin52, 200, 50, 0.001, 200)
 x13 = 50
-y13 = (tm.time() - start_time)
+y13 = tmp
 
 start_time = tm.time()
 algoritmoGeneticoPlotTamElite(berlin52, 200, 70, 0.001, 200)
 x14 = 70
-y14 = (tm.time() - start_time)
+y14 = tmp
 
 start_time = tm.time()
 algoritmoGeneticoPlotTamElite(berlin52, 200, 90, 0.001, 200)
 x15 = 90
-y15 = (tm.time() - start_time)
+y15 = tmp
 
 #Script para gerar gráficos
 def tempoExecucao():
