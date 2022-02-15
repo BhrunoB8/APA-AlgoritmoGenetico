@@ -5,6 +5,7 @@
 
 
 import argparse
+from os import TMP_MAX
 import numpy as np, random, operator, pandas as pd, matplotlib.pyplot as plt
 import time as tm
 #Definição da classe Rua
@@ -233,9 +234,9 @@ def algoritmoGenetico(populacao, tamanhoPopulacao, tamanhoElite, taxaMutacao, ge
 
 # In[12]:
 
-
+tmp = 0
 #Plotagem do gráfico do Algoritmo Genético
-def algoritmoGeneticoPlot(populacao, tamanhoPopulacao, tamanhoElite, taxaMutacao, geracoes):
+def algoritmoGeneticoPlotTamPop(populacao, tamanhoPopulacao, tamanhoElite, taxaMutacao, geracoes):
     pop = populacaoInicial(tamanhoPopulacao, populacao)    
     print("Distância Inicial (Não otimizada): " + str(1 / rankRotas(pop)[0][1]))
     progresso = []
@@ -249,12 +250,68 @@ def algoritmoGeneticoPlot(populacao, tamanhoPopulacao, tamanhoElite, taxaMutacao
     melhorRotaIndex = rankRotas(pop)[0][0]
     melhorRota = pop[melhorRotaIndex]
     print("Melhor rota:", melhorRota)
+    global tmp
+    tmp = (tm.time() - start_time)
+    print("Tempo de Execução: %s segundos" %tmp)
+    plt.title("Quantidade de caminhos pesquisados: %s" %tamanhoPopulacao)
     plt.plot(progresso)
     plt.ylabel('Distância')
     plt.xlabel('Geração')
     print("\n")
-    print("Tempo de Execução: %s segundos" %(tm.time() - start_time))
     plt.show()
+
+#Plotagem do gráfico do Algoritmo Genético para o ELITISMO
+tmp = 0
+def algoritmoGeneticoPlotTamElite(populacao, tamanhoPopulacao, tamanhoElite, taxaMutacao, geracoes):
+    pop = populacaoInicial(tamanhoPopulacao, populacao)    
+    print("Distância Inicial (Não otimizada): " + str(1 / rankRotas(pop)[0][1]))
+    progresso = []
+    progresso.append(1 / rankRotas(pop)[0][1])
+        
+    for i in range(0, geracoes):
+        pop = proximaGeracao(pop, tamanhoElite, taxaMutacao)
+        progresso.append(1 / rankRotas(pop)[0][1])
+        
+    print("Distância Final (Otimizada): " + str(1 / rankRotas(pop)[0][1]))
+    melhorRotaIndex = rankRotas(pop)[0][0]
+    melhorRota = pop[melhorRotaIndex]
+    print("Melhor rota:", melhorRota)
+    global tmp
+    tmp = (tm.time() - start_time)
+    print("Tempo de Execução: %s segundos" %tmp)
+    plt.plot(progresso)
+    plt.title("Tamanho da Elite: %s" %tamanhoElite)
+    plt.ylabel('Distância')
+    plt.xlabel('Geração')
+    print("\n")
+    plt.show()
+
+#Plotagem do gráfico do Algoritmo Genético para o NÚMERO DE GERAÇÕES
+tmp = 0
+def algoritmoGeneticoPlotGeracoes(populacao, tamanhoPopulacao, tamanhoElite, taxaMutacao, geracoes):
+    pop = populacaoInicial(tamanhoPopulacao, populacao)    
+    print("Distância Inicial (Não otimizada): " + str(1 / rankRotas(pop)[0][1]))
+    progresso = []
+    progresso.append(1 / rankRotas(pop)[0][1])
+        
+    for i in range(0, geracoes):
+        pop = proximaGeracao(pop, tamanhoElite, taxaMutacao)
+        progresso.append(1 / rankRotas(pop)[0][1])
+        
+    print("Distância Final (Otimizada): " + str(1 / rankRotas(pop)[0][1]))
+    melhorRotaIndex = rankRotas(pop)[0][0]
+    melhorRota = pop[melhorRotaIndex]
+    print("Melhor rota:", melhorRota)
+    global tmp
+    tmp = (tm.time() - start_time)
+    print("Tempo de Execução: %s segundos" %tmp)
+    plt.plot(progresso)
+    plt.title("Número de Gerações: %s" %tamanhoElite)
+    plt.ylabel('Distância')
+    plt.xlabel('Geração')
+    print("\n")
+    plt.show()
+    # return tmp
 
 
 # In[13]:
@@ -497,27 +554,27 @@ lin105 = [
 #Script para orquestrar a realização de experimentos
 # Tamanho População
 start_time = tm.time()
-algoritmoGeneticoPlot(berlin52, 100, 55, 0.001, 200)
+algoritmoGeneticoPlotTamPop(berlin52, 100, 55, 0.001, 200)
 x1 = 100
-y1 = (tm.time() - start_time)
+y1 = tmp
 
 start_time = tm.time()
-algoritmoGeneticoPlot(berlin52, 300, 55, 0.001, 200)
+algoritmoGeneticoPlotTamPop(berlin52, 300, 55, 0.001, 200)
 x2 = 300
-y2 = (tm.time() - start_time)
+y2 = tmp
 
 start_time = tm.time()
-algoritmoGeneticoPlot(berlin52, 500, 55, 0.001, 200)
+algoritmoGeneticoPlotTamPop(berlin52, 500, 55, 0.001, 200)
 x3 = 500
-y3 = (tm.time() - start_time)
+y3 = tmp
 
 start_time = tm.time()
-algoritmoGeneticoPlot(berlin52, 800, 55, 0.001, 200)
+algoritmoGeneticoPlotTamPop(berlin52, 800, 55, 0.001, 200)
 x4 = 800
 y4 = (tm.time() - start_time)
 
 start_time = tm.time()
-algoritmoGeneticoPlot(berlin52, 1000, 55, 0.001, 200)
+algoritmoGeneticoPlotTamPop(berlin52, 1000, 55, 0.001, 200)
 x5 = 1000
 y5 = (tm.time() - start_time)
 
@@ -526,74 +583,75 @@ y5 = (tm.time() - start_time)
 
 # Número de Gerações
 start_time = tm.time()
-algoritmoGeneticoPlot(berlin52, 200, 55, 0.001, 200)
+algoritmoGeneticoPlotGeracoes(berlin52, 200, 55, 0.001, 200)
 x6=200
 y6= (tm.time()-start_time)
 
 start_time = tm.time()
-algoritmoGeneticoPlot(berlin52, 200, 55, 0.001, 400)
+algoritmoGeneticoPlotGeracoes(berlin52, 200, 55, 0.001, 400)
 x7=400
 y7= (tm.time()-start_time)
 
 start_time = tm.time()
-algoritmoGeneticoPlot(berlin52, 200, 55, 0.001, 600)
+algoritmoGeneticoPlotGeracoes(berlin52, 200, 55, 0.001, 600)
 x8=600
 y8= (tm.time()-start_time)
 
 start_time = tm.time()
-algoritmoGeneticoPlot(berlin52, 200, 55, 0.001, 800)
+algoritmoGeneticoPlotGeracoes(berlin52, 200, 55, 0.001, 800)
 x9=800
 y9= (tm.time()-start_time)
 
 start_time = tm.time()
-algoritmoGeneticoPlot(berlin52, 200, 55, 0.001, 1000)
+algoritmoGeneticoPlotGeracoes(berlin52, 200, 55, 0.001, 1000)
 x10=1000
 y10= (tm.time()-start_time)
 
 # Tamanho Elite
 start_time = tm.time()
-algoritmoGeneticoPlot(berlin52, 200, 10, 0.001, 200)
+algoritmoGeneticoPlotTamElite(berlin52, 200, 10, 0.001, 200)
 x11 = 10
 y11 = (tm.time() - start_time)
 
 start_time = tm.time()
-algoritmoGeneticoPlot(berlin52, 200, 30, 0.001, 200)
+algoritmoGeneticoPlotTamElite(berlin52, 200, 30, 0.001, 200)
 x12 = 30
 y12 = (tm.time() - start_time)
 
 start_time = tm.time()
-algoritmoGeneticoPlot(berlin52, 200, 50, 0.001, 200)
+algoritmoGeneticoPlotTamElite(berlin52, 200, 50, 0.001, 200)
 x13 = 50
 y13 = (tm.time() - start_time)
 
 start_time = tm.time()
-algoritmoGeneticoPlot(berlin52, 200, 70, 0.001, 200)
+algoritmoGeneticoPlotTamElite(berlin52, 200, 70, 0.001, 200)
 x14 = 70
 y14 = (tm.time() - start_time)
 
 start_time = tm.time()
-algoritmoGeneticoPlot(berlin52, 200, 90, 0.001, 200)
+algoritmoGeneticoPlotTamElite(berlin52, 200, 90, 0.001, 200)
 x15 = 90
 y15 = (tm.time() - start_time)
 
 #Script para gerar gráficos
 def tempoExecucao():
-    tamPopX = [x1,x2,x3,x4,x5];
-    tamPopY = [y1,y2,y3,y4,y5];
+    tamPopX = [x1,x2,x3,x4,x5]
+    tamPopY = [y1,y2,y3,y4,y5]
     numGeracoesX=[x6,x7,x8,x9,x10]
     numGeracoesY=[y6,y7,y8,y9,y10]
     tamEliteX=[x11,x12,x13,x14,x15]
     tamEliteY=[y11,y12,y13,y14,y15]
 
-    plt.plot(tamPopX,tamPopY)
-    plt.plot(numGeracoesX,numGeracoesY)
-    plt.plot(tamEliteX,tamEliteY)
+    plt.plot(tamPopX,tamPopY, label='Quantidade de Caminhos Pesquisados')
+    plt.plot(numGeracoesX,numGeracoesY, label='Número de Gerações')
+    plt.plot(tamEliteX,tamEliteY, label='Tamanho Elite')
     plt.scatter(tamPopX,tamPopY, color='blue')
     plt.scatter(numGeracoesX,numGeracoesY, color='red')
     plt.scatter(tamEliteX,tamEliteY, color='green')
     # plt.scatter(xxx,yyy, color='green')
     plt.xlabel("N")
     plt.ylabel("Tempo de execução (s)")
+    plt.legend()
     plt.title("Comparação entre o tempo de execução considerando os diferentes parâmetros")
     plt.show()
 
