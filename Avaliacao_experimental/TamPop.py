@@ -218,8 +218,8 @@ def proximaGeracao(geracaoAtual, tamanhoElite, taxaMutacao):
 # In[11]:
 
 
-def algoritmoGenetico(populacao, tamanhoPopulacao, tamanhoElite, taxaMutacao, geracoes):
-    pop = populacaoInicial(tamanhoPopulacao, populacao)
+def algoritmoGenetico(populacao, quantidadeCaminhos, tamanhoElite, taxaMutacao, geracoes):
+    pop = populacaoInicial(quantidadeCaminhos, populacao)
     print("Distancia Inicial: " + str(1 / rankRotas(pop)[0][1]))
     
     for i in range(0, geracoes):
@@ -235,25 +235,30 @@ def algoritmoGenetico(populacao, tamanhoPopulacao, tamanhoElite, taxaMutacao, ge
 
 
 #Plotagem do gráfico do Algoritmo Genético
-def algoritmoGeneticoPlot(populacao, tamanhoPopulacao, tamanhoElite, taxaMutacao, geracoes):
-    pop = populacaoInicial(tamanhoPopulacao, populacao)    
+tmp = 0
+def algoritmoGeneticoPlot(populacao, quantidadeCaminhos, tamanhoElite, taxaMutacao, geracoes):
+    pop = populacaoInicial(quantidadeCaminhos, populacao)    
     print("Distância Inicial (Não otimizada): " + str(1 / rankRotas(pop)[0][1]))
     progresso = []
     progresso.append(1 / rankRotas(pop)[0][1])
     
-    for i in range(0, geracoes):
+    for i in range(0, quantidadeCaminhos):
         pop = proximaGeracao(pop, tamanhoElite, taxaMutacao)
         progresso.append(1 / rankRotas(pop)[0][1])
     
     print("Distância Final (Otimizada): " + str(1 / rankRotas(pop)[0][1]))
     melhorRotaIndex = rankRotas(pop)[0][0]
     melhorRota = pop[melhorRotaIndex]
+    global tmp
+    tmp = (tm.time() - start_time)
+    print("Tempo de Execução: %s segundos" %tmp)
     print("Melhor rota:", melhorRota)
     plt.plot(progresso)
+    plt.title("Quantidade de Caminhos Pesquisados utilizado para medir o impacto: %s" %quantidadeCaminhos)
     plt.ylabel('Distância')
     plt.xlabel('Geração')
     print("\n")
-    print("Tempo de Execução: %s segundos" %(tm.time() - start_time))
+    
     plt.show()
 
 
@@ -492,43 +497,43 @@ lin105 = [
     Rua(1780,370)
     ]
 # In[14]:
-# algoritmoGeneticoPlot(listas[populacao], tamanhoPopulacao, tamanhoElite, taxaMutacao, geracoes)
+# algoritmoGeneticoPlot(listas[populacao], quantidadeCaminhos, tamanhoElite, taxaMutacao, geracoes)
 
 #Script para orquestrar a realização de experimentos
 start_time = tm.time()
 algoritmoGeneticoPlot(berlin52, 100, 55, 0.001, 200)
 x1 = 100
-y1 = (tm.time() - start_time)
+y1 = tmp
 
 start_time = tm.time()
 algoritmoGeneticoPlot(berlin52, 300, 55, 0.001, 200)
 x2 = 300
-y2 = (tm.time() - start_time)
+y2 = tmp
 
 start_time = tm.time()
 algoritmoGeneticoPlot(berlin52, 500, 55, 0.001, 200)
 x3 = 500
-y3 = (tm.time() - start_time)
+y3 = tmp
 
 start_time = tm.time()
 algoritmoGeneticoPlot(berlin52, 800, 55, 0.001, 200)
 x4 = 800
-y4 = (tm.time() - start_time)
+y4 = tmp
 
 start_time = tm.time()
 algoritmoGeneticoPlot(berlin52, 1000, 55, 0.001, 200)
 x5 = 1000
-y5 = (tm.time() - start_time)
+y5 = tmp
 
-#Script para gerar gráficos
+#Script para gerar o gráfico de execução tendo em vista o tamanho de n
 def tempoExecucao():
     x=[x1,x2,x3,x4,x5]
     y=[y1,y2,y3,y4,y5]
     plt.plot(x,y)
     plt.scatter(x,y, color='blue')
-    plt.xlabel("Tamanho da população (n)")
+    plt.xlabel("Quantidade de Caminhos Pesquisados (n)")
     plt.ylabel("Tempo de execução (s)")
-    plt.title("Tempo de execução em relação ao Tamanho da População")
+    plt.title("Tempo de execução em relação a Quantidade de Caminhos Pesquisados")
     plt.show()
 
 tempoExecucao()
