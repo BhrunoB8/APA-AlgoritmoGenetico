@@ -27,7 +27,8 @@ class Rua:
 
 #Criando uma rota de maneira aleatória
 def criarRota(listaRuas):
-    rota = random.sample(listaRuas, len(listaRuas))
+    #rota = random.sample(listaRuas, len(listaRuas))
+    rota = listaRuas
     return rota
 
 def populacaoInicial(tamanhoPop, listaRuas):

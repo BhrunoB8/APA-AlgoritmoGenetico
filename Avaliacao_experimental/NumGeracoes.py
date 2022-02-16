@@ -26,7 +26,8 @@ class Rua:
 
 #Criando uma rota de maneira aleatória
 def criarRota(listaRuas):
-    rota = random.sample(listaRuas, len(listaRuas))
+    #rota = random.sample(listaRuas, len(listaRuas))
+    rota = listaRuas
     return rota
 
 def populacaoInicial(tamanhoPop, listaRuas):
@@ -266,10 +267,9 @@ def algoritmoGeneticoPlot(populacao, quantidadeCaminhos, tamanhoElite, taxaMutac
 
 
 # In[13]:
-    
-    
+     
     #dataset berlin52 (Groetschel)
-    berlin52=[Rua(565,575),
+berlin52=[Rua(565,575),
     Rua(25,185),
     Rua(345,750),
     Rua(945,685),
@@ -318,13 +318,12 @@ def algoritmoGeneticoPlot(populacao, quantidadeCaminhos, tamanhoElite, taxaMutac
     Rua(1170,65),
     Rua(830,610),
     Rua(605,625),
-Rua(595,360),
-Rua(1340,725),
-Rua(1740
-    ,245)]
+    Rua(595,360),
+    Rua(1340,725),
+    Rua(1740,245)]
     
     #dataset st60
-    st60 = [Rua(64,96),
+st60 = [Rua(64,96),
     Rua(80,39),
     Rua(69,23),
     Rua(72,42),
@@ -469,8 +468,7 @@ kroB150 = [
     Rua(3635, 1174),
     Rua(1362, 1526),
     Rua(2049, 417),
-    Rua(2552, 1909),
-    Rua(3939, 640),
+    Rua(2552, 1),
     Rua(219, 898),
     Rua(812, 351),
     Rua(901, 1552),
