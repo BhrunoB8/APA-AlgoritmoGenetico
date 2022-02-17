@@ -243,22 +243,23 @@ def algoritmoGeneticoPlot(populacao, quantidadeCaminhos, tamanhoElite, taxaMutac
     progresso = []
     progresso.append(1 / rankRotas(pop)[0][1])
     
-    for i in range(0, tamanhoElite):
+    for i in range(0, len(populacao)):
         pop = proximaGeracao(pop, tamanhoElite, taxaMutacao)
         progresso.append(1 / rankRotas(pop)[0][1])
     
     print("Distância Final (Otimizada): " + str(1 / rankRotas(pop)[0][1]))
     melhorRotaIndex = rankRotas(pop)[0][0]
     melhorRota = pop[melhorRotaIndex]
-    print("Melhor rota:", melhorRota)
     global tmp
     tmp = (tm.time() - start_time)
     print("Tempo de Execução: %s segundos" %tmp)
+    print("Melhor rota:", melhorRota)
     plt.plot(progresso)
-    plt.title("Tamanho da Elite utilizado para medir o impacto: %s" %tamanhoElite)
+    plt.title("População utilizado para medir o impacto: %s" %len(populacao))
     plt.ylabel('Distância')
-    plt.xlabel('Tamanho da Elite')
+    plt.xlabel('Geração')
     print("\n")
+    
     plt.show()
 
 
@@ -499,42 +500,45 @@ lin105 = [
 # In[14]:
 # algoritmoGeneticoPlot(listas[populacao], quantidadeCaminhos, tamanhoElite, taxaMutacao, geracoes)
 
-#----------------------------------------
 #Script para orquestrar a realização de experimentos
 start_time = tm.time()
-algoritmoGeneticoPlot(berlin52, 200, 10, 0.001, 200)
-x1 = 10
+algoritmoGeneticoPlot(berlin52, 100, 55, 0.001, 200)
+x1 = 100
 y1 = tmp
 
 start_time = tm.time()
-algoritmoGeneticoPlot(berlin52, 200, 30, 0.001, 200)
-x2 = 30
+algoritmoGeneticoPlot(berlin52, 300, 55, 0.001, 200)
+x2 = 300
 y2 = tmp
 
 start_time = tm.time()
-algoritmoGeneticoPlot(berlin52, 200, 50, 0.001, 200)
-x3 = 50
+algoritmoGeneticoPlot(berlin52, 500, 55, 0.001, 200)
+x3 = 500
 y3 = tmp
 
 start_time = tm.time()
-algoritmoGeneticoPlot(berlin52, 200, 70, 0.001, 200)
-x4 = 70
+algoritmoGeneticoPlot(berlin52, 800, 55, 0.001, 200)
+x4 = 800
 y4 = tmp
 
 start_time = tm.time()
-algoritmoGeneticoPlot(berlin52, 200, 90, 0.001, 200)
-x5 = 90
+algoritmoGeneticoPlot(berlin52, 1000, 55, 0.001, 200)
+x5 = 1000
 y5 = tmp
 
-#Script para gerar o gráfico de tempo de execução tendo em vista o tamanho do elitismo
+#Script para gerar o gráfico de execução tendo em vista o tamanho de n
 def tempoExecucao():
     x=[x1,x2,x3,x4,x5]
     y=[y1,y2,y3,y4,y5]
     plt.plot(x,y)
     plt.scatter(x,y, color='blue')
-    plt.xlabel("Tamanho do Elitismo")    
+    plt.xlabel("Quantidade de Caminhos Pesquisados (n)")
     plt.ylabel("Tempo de execução (s)")
-    plt.title("Tempo de execução em relação ao Tamanho do Elitismo")
+    plt.title("Tempo de execução em relação a Quantidade de Caminhos Pesquisados")
     plt.show()
 
 tempoExecucao()
+
+
+
+#-------------------------------------------------

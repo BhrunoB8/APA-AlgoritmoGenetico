@@ -235,6 +235,7 @@ def algoritmoGenetico(populacao, quantidadeCaminhos, tamanhoElite, taxaMutacao, 
 
 
 #Plotagem do gráfico do Algoritmo Genético
+tmp = 0
 def algoritmoGeneticoPlot(populacao, quantidadeCaminhos, tamanhoElite, taxaMutacao, geracoes):
     pop = populacaoInicial(quantidadeCaminhos, populacao)    
     print("Distância Inicial (Não otimizada): " + str(1 / rankRotas(pop)[0][1]))

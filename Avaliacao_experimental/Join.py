@@ -307,13 +307,13 @@ def algoritmoGeneticoPlotGeracoes(populacao, quantidadeCaminhos, tamanhoElite, t
     tmp = (tm.time() - start_time)
     print("Tempo de Execução: %s segundos" %tmp)
     plt.plot(progresso)
-    plt.title("Número de Gerações utilizado para medir o impacto: %s" %tamanhoElite)
+    plt.title("Número de Gerações utilizado para medir o impacto: %s" %geracoes)
     plt.ylabel('Distância')
     plt.xlabel('Número de Gerações')
     print("\n")
     plt.show()
 
-    tmp = 0
+tmp = 0
 def algoritmoGeneticoN(populacao, quantidadeCaminhos, tamanhoElite, taxaMutacao, geracoes):
     pop = populacaoInicial(quantidadeCaminhos, populacao)    
     print("Distância Inicial (Não otimizada): " + str(1 / rankRotas(pop)[0][1]))
@@ -765,31 +765,58 @@ kroB150 = [
 # algoritmoGeneticoPlot(listas[populacao], quantidadeCaminhos, tamanhoElite, taxaMutacao, geracoes)
 
 #Script para orquestrar a realização de experimentos
+# N (População)
+start_time = tm.time()
+algoritmoGeneticoN(bayg29, 200, 55, 0.001, 200)
+x16 = 29
+y16 = tmp
+
+start_time = tm.time()
+algoritmoGeneticoN(berlin52, 200, 55, 0.001, 200)
+x17 = 52
+y17 = tmp
+
+start_time = tm.time()
+algoritmoGeneticoN(st60, 200, 55, 0.001, 200)
+x18 = 70
+y18 = tmp
+
+start_time = tm.time()
+algoritmoGeneticoN(lin105, 200, 55, 0.001, 200)
+x19 = 103
+y19 = tmp
+
+start_time = tm.time()
+algoritmoGeneticoN(kroB150, 200, 55, 0.001, 200)
+x20 = 150
+y20 = tmp
+
+#Script para orquestrar a realização de experimentos
 # Quantidade de Caminhos Pesquisados 
-start_time = tm.time()
-algoritmoGeneticoPlotTamPop(berlin52, 100, 55, 0.001, 200)
-x1 = 100
-y1 = tmp
+# start_time = tm.time()
+# algoritmoGeneticoPlotTamPop(berlin52, 100, 55, 0.001, 200)
+# x1 = 100
+# y1 = tmp
 
-start_time = tm.time()
-algoritmoGeneticoPlotTamPop(berlin52, 300, 55, 0.001, 200)
-x2 = 300
-y2 = tmp
+# start_time = tm.time()
+# algoritmoGeneticoPlotTamPop(berlin52, 300, 55, 0.001, 200)
+# x2 = 300
+# y2 = tmp
 
-start_time = tm.time()
-algoritmoGeneticoPlotTamPop(berlin52, 500, 55, 0.001, 200)
-x3 = 500
-y3 = tmp
+# start_time = tm.time()
+# algoritmoGeneticoPlotTamPop(berlin52, 500, 55, 0.001, 200)
+# x3 = 500
+# y3 = tmp
 
-start_time = tm.time()
-algoritmoGeneticoPlotTamPop(berlin52, 800, 55, 0.001, 200)
-x4 = 800
-y4 = tmp
+# start_time = tm.time()
+# algoritmoGeneticoPlotTamPop(berlin52, 800, 55, 0.001, 200)
+# x4 = 800
+# y4 = tmp
 
-start_time = tm.time()
-algoritmoGeneticoPlotTamPop(berlin52, 1000, 55, 0.001, 200)
-x5 = 1000
-y5 = tmp
+# start_time = tm.time()
+# algoritmoGeneticoPlotTamPop(berlin52, 1000, 55, 0.001, 200)
+# x5 = 1000
+# y5 = tmp
 
 
 #Número de Gerações
@@ -821,61 +848,34 @@ y10= tmp
 #Tamanho Elite
 start_time = tm.time()
 algoritmoGeneticoPlotTamElite(berlin52, 200, 30, 0.001, 200)
-x11 = 10
+x11 = 30
 y11 = tmp
 
 start_time = tm.time()
 algoritmoGeneticoPlotTamElite(berlin52, 200, 50, 0.001, 200)
-x12 = 30
+x12 = 50
 y12 = tmp
 
 start_time = tm.time()
 algoritmoGeneticoPlotTamElite(berlin52, 200, 75, 0.001, 200)
-x13 = 50
+x13 = 75
 y13 = tmp
 
 start_time = tm.time()
 algoritmoGeneticoPlotTamElite(berlin52, 200, 100, 0.001, 200)
-x14 = 70
+x14 = 100
 y14 = tmp
 
 start_time = tm.time()
 algoritmoGeneticoPlotTamElite(berlin52, 200, 150, 0.001, 200)
-x15 = 90
+x15 = 150
 y15 = tmp
-
-#Script para orquestrar a realização de experimentos
-# N (População)
-start_time = tm.time()
-algoritmoGeneticoN(bayg29, 200, 55, 0.001, 200)
-x16 = 29
-y16 = tmp
-
-start_time = tm.time()
-algoritmoGeneticoN(berlin52, 200, 55, 0.001, 200)
-x17 = 52
-y17 = tmp
-
-start_time = tm.time()
-algoritmoGeneticoN(st60, 200, 55, 0.001, 200)
-x18 = 70
-y18 = tmp
-
-start_time = tm.time()
-algoritmoGeneticoN(lin105, 200, 55, 0.001, 200)
-x19 = 103
-y19 = tmp
-
-start_time = tm.time()
-algoritmoGeneticoN(kroB150, 200, 55, 0.001, 200)
-x20 = 150
-y20 = tmp
 
 #Script para gerar o gráfico comparando os três parâmetros:
 # (qtd caminhos pesquisados, número de gerações e tamanho da elite)
 def tempoExecucao():
-    tamPopX = [x1,x2,x3,x4,x5]
-    tamPopY = [y1,y2,y3,y4,y5]
+    # tamPopX = [x1,x2,x3,x4,x5]
+    # tamPopY = [y1,y2,y3,y4,y5]
     numGeracoesX=[x6,x7,x8,x9,x10]
     numGeracoesY=[y6,y7,y8,y9,y10]
     tamEliteX=[x11,x12,x13,x14,x15]
@@ -884,13 +884,13 @@ def tempoExecucao():
     tamNY=[y16,y17,y18,y19,y20]
 
     plt.plot(tamNX, tamNY, label='N (População)')
-    plt.plot(tamPopX,tamPopY, label='Quantidade de Caminhos Pesquisados')
+    # plt.plot(tamPopX,tamPopY, label='Quantidade de Caminhos Pesquisados')
     plt.plot(numGeracoesX,numGeracoesY, label='Número de Gerações')
     plt.plot(tamEliteX,tamEliteY, label='Tamanho Elite')
-    plt.scatter(tamPopX,tamPopY, color='blue')
+    # plt.scatter(tamPopX,tamPopY, color='blue')
     plt.scatter(numGeracoesX,numGeracoesY, color='red')
     plt.scatter(tamEliteX,tamEliteY, color='green')
-    plt.scatter(tamNX, tamNY, color='yellow')
+    plt.scatter(tamNX, tamNY, color='blue')
     # plt.scatter(xxx,yyy, color='green')
     plt.xlabel("N")
     plt.ylabel("Tempo de execução (s)")
