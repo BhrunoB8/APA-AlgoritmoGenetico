@@ -269,7 +269,7 @@ def algoritmoGeneticoPlotTamElite(populacao, quantidadeCaminhos, tamanhoElite, t
     progresso = []
     progresso.append(1 / rankRotas(pop)[0][1])
         
-    for i in range(0, tamanhoElite):
+    for i in range(0, geracoes):
         pop = proximaGeracao(pop, tamanhoElite, taxaMutacao)
         progresso.append(1 / rankRotas(pop)[0][1])
         
@@ -283,7 +283,7 @@ def algoritmoGeneticoPlotTamElite(populacao, quantidadeCaminhos, tamanhoElite, t
     plt.plot(progresso)
     plt.title("Tamanho da Elite utilizado para medir o impacto: %s" %tamanhoElite)
     plt.ylabel('Distância')
-    plt.xlabel('Tamanho da Elite')
+    plt.xlabel('Gerações')
     print("\n")
     plt.show()
 
@@ -309,7 +309,7 @@ def algoritmoGeneticoPlotGeracoes(populacao, quantidadeCaminhos, tamanhoElite, t
     plt.plot(progresso)
     plt.title("Número de Gerações utilizado para medir o impacto: %s" %geracoes)
     plt.ylabel('Distância')
-    plt.xlabel('Número de Gerações')
+    plt.xlabel('Gerações')
     print("\n")
     plt.show()
 
@@ -320,7 +320,7 @@ def algoritmoGeneticoN(populacao, quantidadeCaminhos, tamanhoElite, taxaMutacao,
     progresso = []
     progresso.append(1 / rankRotas(pop)[0][1])
         
-    for i in range(0, len(populacao)):
+    for i in range(0, geracoes):
         pop = proximaGeracao(pop, tamanhoElite, taxaMutacao)
         progresso.append(1 / rankRotas(pop)[0][1])
         
@@ -334,7 +334,7 @@ def algoritmoGeneticoN(populacao, quantidadeCaminhos, tamanhoElite, taxaMutacao,
     plt.plot(progresso)
     plt.title("N (População) utilizado para medir o impacto: %s" %len(populacao))
     plt.ylabel('Distância')
-    plt.xlabel('N (População)')
+    plt.xlabel('Gerações')
     print("\n")
     plt.show()
     
@@ -892,7 +892,7 @@ def tempoExecucao():
     plt.scatter(tamEliteX,tamEliteY, color='green')
     plt.scatter(tamNX, tamNY, color='blue')
     # plt.scatter(xxx,yyy, color='green')
-    plt.xlabel("N")
+    plt.xlabel("Tamanho das Entradas")
     plt.ylabel("Tempo de execução (s)")
     plt.legend()
     plt.title("Comparação entre o tempo de execução considerando os diferentes parâmetros")
