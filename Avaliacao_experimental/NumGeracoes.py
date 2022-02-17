@@ -613,7 +613,8 @@ y5= tmp
 def tempoExecucao():
     x=[x1,x2,x3,x4,x5]
     y=[y1,y2,y3,y4,y5]
-    plt.plot(x,y)
+    plt.plot(x,y, label="Número de Gerações")
+    plt.legend()
     plt.scatter(x,y, color='blue')
     plt.xlabel("Número de gerações")
     plt.ylabel("Tempo de execução (s)")

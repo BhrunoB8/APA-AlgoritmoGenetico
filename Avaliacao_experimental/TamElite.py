@@ -502,36 +502,37 @@ lin105 = [
 #----------------------------------------
 #Script para orquestrar a realização de experimentos
 start_time = tm.time()
-algoritmoGeneticoPlot(berlin52, 200, 10, 0.001, 200)
-x1 = 10
+algoritmoGeneticoPlot(berlin52, 200, 30, 0.001, 200)
+x1 = 30
 y1 = tmp
 
 start_time = tm.time()
-algoritmoGeneticoPlot(berlin52, 200, 30, 0.001, 200)
-x2 = 30
+algoritmoGeneticoPlot(berlin52, 200, 50, 0.001, 200)
+x2 = 50
 y2 = tmp
 
 start_time = tm.time()
-algoritmoGeneticoPlot(berlin52, 200, 50, 0.001, 200)
-x3 = 50
+algoritmoGeneticoPlot(berlin52, 200, 75, 0.001, 200)
+x3 = 75
 y3 = tmp
 
 start_time = tm.time()
-algoritmoGeneticoPlot(berlin52, 200, 70, 0.001, 200)
-x4 = 70
+algoritmoGeneticoPlot(berlin52, 200, 100, 0.001, 200)
+x4 = 100
 y4 = tmp
 
 start_time = tm.time()
-algoritmoGeneticoPlot(berlin52, 200, 90, 0.001, 200)
-x5 = 90
+algoritmoGeneticoPlot(berlin52, 200, 150, 0.001, 200)
+x5 = 150
 y5 = tmp
 
 #Script para gerar o gráfico de tempo de execução tendo em vista o tamanho do elitismo
 def tempoExecucao():
     x=[x1,x2,x3,x4,x5]
     y=[y1,y2,y3,y4,y5]
-    plt.plot(x,y)
+    plt.plot(x,y, label='Tamanho Elite')
     plt.scatter(x,y, color='blue')
+    plt.legend()
     plt.xlabel("Tamanho do Elitismo")    
     plt.ylabel("Tempo de execução (s)")
     plt.title("Tempo de execução em relação ao Tamanho do Elitismo")
